@@ -1,0 +1,31 @@
+md-toolbar {
+  background-color: $toolbar-color !important;
+  h2 {
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .gp-share-button {
+    margin-left: auto;
+  }
+
+  md-autocomplete {
+    background-color: lighten($toolbar-color, 65%);
+    margin-left: 20px;
+    &:focus {
+      background-color: green;
+    }
+    .md-whiteframe-z1 {
+      box-shadow: none;
+    }
+
+  }
+
+  .md-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+}

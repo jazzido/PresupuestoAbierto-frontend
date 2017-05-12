@@ -1,0 +1,6 @@
+<md-select ng-model="current" ng-change="ctrl.selectCube()">
+  <md-option ng-repeat="cube in cubes track by cube.id"
+             value="{{cube.id}}">
+    {{cube.display_name}}
+  </md-option>
+</md-select>

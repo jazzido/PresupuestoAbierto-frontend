@@ -1,0 +1,16 @@
+<div layout="column" flex="70">
+  <breadcrumbs></breadcrumbs>
+  <div layout="row" layout-align="start center">
+    <h2 flex ng-class="ancestors.length > 1 ? 'md-headline' : 'md-display-1'" style="margin:0; text-overflow: ellipsis; overflow: hidden; white-space: nowrap">{{ ancestors[ancestors.length - 1].caption }} <span ng-if="timeDim.level === 'Month'" style="opacity: 0.5;"><span style="text-decoration: underline">{{timeParam}}</span><a style="padding-left: 5px;" class="md-subhead" ui-sref="main.dimension.chart({date: null})">ver todos los años</a></span></h2>
+  </div>
+</div>
+<div flex="30" ng-if="ancestors.length > 1" style="align-self: flex-end">
+  <md-input-container style="padding: 0; margin-left: auto; width: 100%; margin-bottom: 0;">
+    <label>Clasificado según</label>
+    <md-select flex ng-if="ancestors.length > 1" ng-model="breakDown" ng-model-options="{trackBy: '$value.name'}" ng-change="changeBreakDown(breakDown)" style="margin: 0;" layout-align="start start">
+      <md-option ng-repeat="bd in breakDownSelector" ng-value="bd">
+        {{bd.name}}
+      </md-option>
+    </md-select>
+  </md-input-container>
+</div>

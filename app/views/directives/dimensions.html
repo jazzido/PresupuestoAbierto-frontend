@@ -1,0 +1,34 @@
+<div layout="row">
+  <h2 class="md-body-2" flex="90">{{::label}}</h2>
+  <a flex="10"
+     class="help-button">
+    <help-tooltip>
+      Los criterios de <strong>clasificación presupuestaria</strong> son:
+      <ul>
+        <li><strong>Jurisdicción</strong>: Las dependencias de la estructura del gobierno (¿quién gasta?)</li>
+        <li><strong>Objeto</strong>: Se refiere a la naturaleza del servicio o producto que se contrata o paga (¿en qué se gasta?)</li>
+        <li><strong>Finalidad y función</strong>: Destino de los servicios o productos adquiridos (¿para qué se gasta?)</li>
+        <li><strong>Fuente de financiamiento</strong>: Origen de los fondos ejecutados.
+      </ul>
+    </help-tooltip>
+    <md-icon>help</md-icon>
+  </a>
+</div>
+
+<md-radio-group ng-model="current.dimension" class="md-primary">
+  <md-radio-button
+                  ng-repeat="dimension in cube.dimensions | filter: {type: '!time'}"
+                  ng-class="{'md-align-top-left': dimension.annotations.description }"
+                  value="{{dimension.name}}" ui-sref="main.dimension.chart({
+                    dimension: dimension.name,
+                    members: null,
+                    level: null,
+                    breakDown: null,
+                    breakDownMember: null
+                  })">
+    <span class="md-body-1">{{::dimension.name}}<br /></span>
+    <span ng-if="dimension.annotations.description"
+          class="md-caption"
+          style="font-size: 10px; display: inline-block; line-height: 13px;">{{::dimension.annotations.description}}</span>
+  </md-radio-button>
+</md-radio-group>

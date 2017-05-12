@@ -1,0 +1,36 @@
+// bower:scss
+// endbower
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+@import "variables";
+
+md-content#main-content {
+  height: calc(100% - 64px); // full height menos alto del toolbar
+  overflow-x: hidden;
+}
+
+md-sidenav {
+  //background-color: $sidenav-color;
+  md-content {
+    height: 100%;
+    color: white !important;
+    background-color: $sidenav-color !important;
+  }
+}
+
+@import "charttype";
+@import "overlays";
+@import "left-menu";
+@import "chart-and-legend";
+@import "tooltip";
+@import "breadcrumbs";
+@import "plottable";
+@import "search";
+@import "toolbar";
+@import "table";

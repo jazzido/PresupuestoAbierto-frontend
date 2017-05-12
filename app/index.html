@@ -1,0 +1,166 @@
+<!doctype html>
+<html ng-app="frontendApp">
+  <head>
+    <meta charset="utf-8">
+    <title ng-bind="($title || 'Home') + ' — Presupuesto Abierto'">Presupuesto Abierto</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Bahía Blanca - Presupuesto Abierto" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Explorar los gastos e ingresos públicos del Gobierno de Bahía Blanca, Argentina" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/angular-material-data-table/dist/md-data-table.min.css" />
+    <link rel="stylesheet" href="bower_components/plottable/plottable.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,400italic">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <script>
+     window.SITE_ID = "bahia";
+     window.API_HOST = "api.presupuestoabierto.org";
+     window.HTML5_MODE = true;
+    </script>
+    <base href="/" />
+  </head>
+  <body layout="column">
+    <!--[if lte IE 8]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+      <div ng-if="false" id="loading">
+          <svg width="183" height="274" viewBox="0 0 183 274" xmlns="http://www.w3.org/2000/svg"><g stroke="#fafafa" opacity=".1" fill="none" fill-rule="evenodd"><path d="M.283 91.5L91.5.283 182.717 91.5 91.5 182.717z"/><path d="M.283 182.5L91.5 91.283l91.217 91.217L91.5 273.717z"/><path d="M.9 92.2v90M182.117 92.217v90M91.5 183v90M91.5 1v90" stroke-linecap="square"/></g></svg>
+          <h1>Presupuesto Abierto</h1>
+          <style type="text/css">
+            div#loading {
+            background-color: #508BD8 !important;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            }
+            div#loading h1 {
+              font-family: 'Roboto', sans-serif;
+              font-weight: 100;
+              font-size: 70px;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+              display: block;
+            }
+
+            @keyframes changewidth {
+              from {
+                transform: scaleX(1);
+              }
+
+              to {
+                transform: scaleX(0);
+              }
+            }
+            div#loading svg {
+              position: absolute;
+              z-index: -1;
+              height: 60%;
+              width: 100%;
+              top: 20%;
+              display: block;
+
+              -moz-animation-name: changewidth;
+              -webkit-animation-name: changewidth;
+              -moz-animation-duration: 0.5s;
+              -webkit-animation-duration: 0.5s;
+              -moz-animation-iteration-count: infinite;
+              -webkit-animation-iteration-count: infinite;
+              -moz-animation-direction: alternate;
+              -webkit-animation-direction: alternate;
+
+              animation-name: changewidth;
+              animation-duration: 0.5s;
+              animation-iteration-count: infinite;
+              animation-direction: alternate;
+            }
+
+          </style>
+
+      </div>
+
+    <!-- Add your site or application content here -->
+
+    <div ui-view="toolbar"></div>
+
+    <md-content layout="row" ui-view id="main-content">
+    </md-content>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+      !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+                               r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+      }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-70078681-1', 'presupuestoabierto.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <script src="bower_components/angular-ui-router-title/angular-ui-router-title.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/svg-typewriter/svgtypewriter.js"></script>
+    <script src="bower_components/plottable/plottable.js"></script>
+    <script src="bower_components/heap/lib/heap.js"></script>
+    <script src="bower_components/topojson/topojson.js"></script>
+    <script src="bower_components/d3plus/d3plus.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/services/cubes.js"></script>
+    <script src="scripts/controllers/chart.js"></script>
+    <script src="scripts/controllers/sidenav.js"></script>
+    <script src="scripts/controllers/legend.js"></script>
+    <script src="scripts/filters/money.js"></script>
+    <script src="scripts/filters/abbrNumber.js"></script>
+    <script src="scripts/directives/barchart.js"></script>
+    <script src="scripts/directives/treemapchart.js"></script>
+    <script src="scripts/directives/tablechart.js"></script>
+    <script src="scripts/directives/tooltip.js"></script>
+    <script src="scripts/directives/helpTooltip.js"></script>
+    <script src="scripts/directives/breadcrumbs.js"></script>
+    <script src="scripts/services/settings.js"></script>
+    <script src="scripts/services/search.js"></script>
+    <script src="scripts/controllers/right.js"></script>
+    <script src="scripts/controllers/toolbar.js"></script>
+    <script src="scripts/controllers/rightheader.js"></script>
+    <script src="scripts/directives/dimensions.js"></script>
+    <script src="scripts/directives/measures.js"></script>
+    <script src="scripts/directives/cubes.js"></script>
+    <script src="scripts/controllers/filters.js"></script>
+    <script src="scripts/directives/charttype.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

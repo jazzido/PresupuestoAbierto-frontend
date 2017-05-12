@@ -1,0 +1,56 @@
+/* por que tengo que agregarle el !important ?? */
+
+.gp-side-menu {
+  width: $sidenav-width !important;
+  min-width: $sidenav-width !important;
+  max-width: $sidenav-width !important;
+  min-height: calc(100vh - 64px);
+
+  #gp-side-menu-filters {
+    h2.md-subhead {
+      margin-top: 0; margin-bottom: 0;
+    }
+    md-radio-button {
+      margin-left: 0;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      outline: none !important;
+    }
+    md-select {
+      padding-top: 6px; padding-bottom: 12px;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    a.help-button {
+      md-icon {
+        line-height: 43.5px;
+      }
+    }
+  }
+
+  .logos {
+    align-content: flex-end;
+    align-items: stretch;
+    justify-content: flex-end;
+
+    &>div {
+      min-height: 40px;
+      flex-grow: 0;
+      justify-content: space-between;
+      align-items: flex-end;
+      a {
+        display: block;
+        &:hover {
+          img {
+            opacity: 1;
+          }
+        }
+        img {
+          opacity: 0.6;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<div flex layout="column" style="width: 100%">
+  <svg class="plottable" width="100%" flex height="100%"></svg>
+  <p class="md-caption" ng-style="{margin: 0, 'text-align': 'center'}">Total: {{ totalTreeMap|money}}</p>
+  <div style="max-width: 70%; width: 60%; margin: 0 auto">
+    <span>{{aggregate.timeTicks[model.selectedDateTick].caption}}</span>
+    <md-slider id="time-slider"
+               aria-label="time slider"
+               ng-model="model.selectedDateTick"
+               ng-change="setSelectedDateTick()"
+               md-discrete
+               step="1"
+               min="0"
+               max="{{aggregate.timeTicks.length - 1}}"></md-slider>
+  </div>
+</div>

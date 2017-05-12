@@ -1,0 +1,24 @@
+.autocomplete-custom-template {
+  li {
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: normal;
+
+    &:last-child {
+      border-bottom-width: 0;
+    }
+
+    .item-title,
+    .item-level {
+      display: block;
+      line-height: 2;
+    }
+
+    .item-level {
+      line-height: 1;
+      font-size: 11px;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<div class="white-overlay-fill" ng-show='stateIsLoading' layout="row" layout-align="center center">
+  <md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+</div>
+
+<div layout="row" id="charts-header" layout-align="start center" layout-padding flex style="max-height: 30px">
+  <div>
+    {{::activeMeasure.caption}}
+    <a class="help-button" ng-if="activeMeasure.annotations.description">
+      <help-tooltip>
+        {{::activeMeasure.annotations.description}}
+      </help-tooltip>
+      <md-icon>help</md-icon>
+    </a>
+  </div>
+
+  <md-switch class="gp-chart-percent-switch" style="margin: 0; margin-left: auto;" ng-change="main.setNormalizeValues()" ng-model="model.normalizeValues" ng-if="['stackedareachart', 'barchart'].indexOf(selectedChart) !== -1">
+    {{model.normalizeValues ? 'Porcentaje' : 'Importe'}}
+  </md-switch>
+
+  <a class="help-button">
+    <help-tooltip ng-model="model.normalizeValues" ng-if="['stackedareachart', 'barchart'].indexOf(selectedChart) !== -1">
+      Ver según importe o según porcentaje del período
+    </help-tooltip>
+    <md-icon ng-if="selectedChart !== 'treemap' && selectedChart !== 'table'">help</md-icon>
+  </a>
+</div>
+
+<tooltip member="highlighted.item" measure="measure">
+  <div flex ng-if="item.caption"><strong>{{item.caption}}</strong></div>
+  <div flex style="white-space: nowrap" style="font-size: 10px;">{{item.measures[measure] | money}}</div>
+  <div flex ng-if="item.series">{{item.series}}</div>
+</tooltip>
+
+<tree-map-chart datasets="datasets" ng-if="selectedChart == 'treemap'"></tree-map-chart>
+
+<bar-chart datasets="datasets" ng-if="selectedChart == 'barchart'"></bar-chart>
+
+<table-chart datasets="datasets" ng-if="selectedChart == 'table'"></table-chart>

@@ -1,0 +1,87 @@
+a.help-button {
+  cursor: default;
+  md-icon {
+    font-size: 15px;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    opacity: 0.4;
+    cursor: pointer;
+    position: relative;
+    top: -1px;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+
+help-tooltip {
+  position: absolute;
+  z-index: 420;
+  visibility: hidden;
+  width: 200px;
+  left: 20px;
+  background-color: white;
+
+  ul {
+    padding-left: 15px;
+  }
+}
+
+
+.gp-tooltip {
+  position: absolute;
+  z-index: 42;
+  background-color: white;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.gp-tooltip:after, .gp-tooltip:before {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.gp-tooltip.arrow_top:after,
+.gp-tooltip.arrow_top:before {
+  bottom: 100%;
+}
+
+.gp-tooltip.arrow_bottom:after,
+.gp-tooltip.arrow_bottom:before {
+  top: 100%;
+}
+
+.gp-tooltip:after {
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 5px;
+  margin-left: -5px;
+}
+  .gp-tooltip.arrow_top:after {
+    border-bottom-color: white;
+  }
+
+  .gp-tooltip.arrow_bottom:after {
+    border-top-color: white;
+  }
+
+.gp-tooltip:before {
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 11px;
+  margin-left: -11px;
+}
+
+  .gp-tooltip.arrow_top:before {
+    border-bottom-color: white;
+  }
+
+  .gp-tooltip.arrow_bottom:before {
+    border-top-color: white;
+  }

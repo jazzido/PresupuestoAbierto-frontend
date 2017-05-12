@@ -1,0 +1,54 @@
+<md-toolbar>
+  <div class="md-toolbar-tools" layout="row">
+    <div hide-gt-md class="md-fling" flex="initial" style="flex-grow:0; flex-shrink: 1; flex-basis: auto;">
+      <md-button class="md-icon-button" aria-label="Menu" ng-click="ctrl.toggleSidebar()">
+        <md-icon>menu</md-icon>
+      </md-button>
+    </div>
+    <h2 class="md-title toolbar-title" show-gt-sm hide flex style="flex-grow:0; flex-shrink: 1; flex-basis: auto; ">
+      <a ui-sref="main.dimension.chart({chart: 'barchart', members: null, level: null, breakDown: null, breakDownMember: null, date: null})">
+        <span>{{::settings.frontend_settings.site_name}}</span>
+      </a>
+    </h2>
+    <md-autocomplete placeholder="Buscar..."
+                     md-items="item in ctrl.autocompleteSearch(ctrl.searchText)"
+                     md-search-text="ctrl.searchText"
+                     md-selected-item="ctrl.selectedItem"
+                     md-selected-item-change="ctrl.autocompleteSearchChanged()"
+                     md-min-length="4"
+                     md-item-text="item.search_field"
+                     md-menu-class="autocomplete-custom-template"
+                     flex
+                     style="flex-grow:0; flex-shrink: 1; flex-basis: auto; ">
+      <md-item-template md-highlight-text="ctrl.searchText" md-highlight-flags="^i">
+        <span class="item-title">
+          <span>{{item.search_field}}</span>
+        </span>
+        <span class="item-level">
+          <span>{{item.properties.level}}
+        </span>
+      </md-item-template>
+    </md-autocomplete>
+
+    <md-button ng-click="ctrl.showAboutDialog($event)" class="md-fab md-mini md-primary" style="position: absolute; top: 14px; right: 60px">
+      <md-icon>help</md-icon>
+    </md-button>
+
+    <!-- md-fab-speed-dial md-direction="down" class="md-fling md-fab-top-right" md-open="false" style="top: 10px; right: 0">
+      <md-fab-trigger>
+        <md-button aria-label="Share" class="md-icon-button md-mini md-fab">
+          <md-icon>share</md-icon>
+        </md-button>
+      </md-fab-trigger>
+      <md-fab-actions>
+        <md-button aria-label="Compartir en Facebook" class="md-fab md-raised md-mini" ng-click="ctrl.sharePopup('https://www.facebook.com/sharer/sharer.php?u=' + ctrl.curLocation())">
+          <md-icon md-svg-src="images/icons/icon_share_facebook.svg" ></md-icon>
+        </md-button>
+        <md-button aria-label="Compartir en Twitter" class="md-fab md-raised md-mini" ng-click="ctrl.sharePopup('http://twitter.com/intent/tweet?text=' + ctrl.curLocation())">
+          <md-icon md-svg-src="images/icons/icon_share_twitter.svg"></md-icon>
+        </md-button>
+
+      </md-fab-actions>
+    </md-fab-speed-dial -->
+  </div>
+</md-toolbar>

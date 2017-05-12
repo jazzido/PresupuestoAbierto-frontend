@@ -1,0 +1,22 @@
+<ul class="breadcrumbs md-body-2" layout="row">
+  <li ng-repeat="a in ancestors.slice(0,-1)" ng-if="ancestors.length > 0">
+    <a ui-sref="main.dimension.chart({
+                 members: a.members,
+                 level: a.level,
+                 breakDown: $index > 0 ? breakDownParam.breakDown : null,
+                 breakDownMember: $index > 0 ? breakDownParam.breakDownMember : null
+                })">{{::a.caption}}
+      <md-tooltip>{{::a.caption}}</md-tooltip></a>
+  </li>
+  <li ng-if="ancestors.length > 1" class="breadcrumbs-back-button">
+    <a ui-sref="main.dimension.chart({
+          members: ancestors.slice(0, -1)[ancestors.length - 2].members,
+          level: ancestors.slice(0, -1)[ancestors.length - 2].level,
+          breakDown: ancestors.length == 2 ? null : breakDownParam.breakDown,
+          breakDownMember: ancestors.length == 2 ? null : breakDownParam.breakDownMember
+        })">
+      <md-icon>keyboard_backspace</md-icon>
+      <md-tooltip>Ir al nivel anterior</md-tooltip>
+    </a>
+  </li>
+</ul>

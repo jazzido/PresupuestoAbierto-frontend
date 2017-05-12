@@ -1,0 +1,15 @@
+.gp-chart-buttons {
+  .md-fab.md-primary {
+    background-color: $sidenav-color;
+    svg * {
+      stroke: #FFF !important;
+      fill: #FFF;
+    }
+  }
+}
+
+.gp-fab-bottom-right {
+    button {
+      box-shadow: 0px 2px 9px 0 rgba(0, 0, 0, 0.6) !important;
+    }
+}

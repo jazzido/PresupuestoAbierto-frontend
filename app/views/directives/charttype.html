@@ -1,0 +1,41 @@
+<md-fab-speed-dial md-direction="up" class="md-fling gp-chart-buttons gp-fab-bottom-right md-fab-bottom-right" md-open="false">
+  <md-fab-trigger>
+    <md-button aria-label="Tipo de Gráfico" class="md-fab md-primary">
+      <md-icon md-svg-icon="images/icons/icon_bar_chart.svg" ng-if="selectedChart === 'barchart'"></md-icon>
+      <md-icon md-svg-icon="images/icons/icon_treemap_chart.svg" ng-if="selectedChart === 'treemap'"></md-icon>
+      <md-icon md-svg-icon="images/icons/icon_spreadsheet.svg" ng-if="selectedChart === 'table'"></md-icon>
+    </md-button>
+  </md-fab-trigger>
+  <md-fab-actions>
+    <md-button
+      class="md-fab md-raised"
+      ui-sref="main.dimension.chart({chart: 'barchart', dateTick: null})"
+      ui-sref-active="gp-active"
+      aria-label="Gráfico de barras"
+      ng-if="selectedChart !== 'barchart'">
+      <md-tooltip>Gráfico de barras</md-tooltip>
+      <md-icon md-svg-src="images/icons/icon_bar_chart.svg"></md-icon>
+    </md-button>
+
+    <md-button
+      class="md-fab md-raised"
+      ui-sref="main.dimension.chart({chart: 'treemap', percent: null})"
+      ui-sref-active="gp-active"
+      aria-label="Treemap"
+      ng-if="selectedChart !== 'treemap'">
+      <md-tooltip>Treemap</md-tooltip>
+      <md-icon md-svg-icon="images/icons/icon_treemap_chart.svg"></md-icon>
+    </md-button>
+
+    <md-button
+      class="md-fab md-raised"
+      ui-sref="main.dimension.chart({chart: 'table'})"
+      ui-sref-active="gp-active"
+      aria-label="Tabla"
+      ng-if="selectedChart !== 'table'">
+      <md-tooltip>Tabla</md-tooltip>
+      <md-icon md-svg-icon="images/icons/icon_spreadsheet.svg"></md-icon>
+    </md-button>
+
+  </md-fab-actions>
+</md-fab-speed-dial>

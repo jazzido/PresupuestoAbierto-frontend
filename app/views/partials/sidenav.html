@@ -1,0 +1,21 @@
+<md-content layout="column" class="md-padding" id="gp-side-menu-filters" flex>
+  <h2 class="md-title" hide-gt-sm>{{::settings.frontend_settings.site_name}}</h2>
+
+  <cubes cubes="Cubes" current="cubeName" ng-style="{display: Cubes.length > 1 ? 'block' : 'none'}"></cubes>
+
+  <ui-view name="filters" style="flex-grow: 1"></ui-view>
+
+  <div flex layout="column" class="logos">
+    <div flex layout="row">
+      <a flex="40" href="http://gabierto.bahiablanca.gov.ar" target="_blank" ng-if="ctrl.hostname.startsWith('bahia')">
+        <img src="images/images/gabb_logo.svg">
+      </a>
+      <a flex="20" href="http://media.mit.edu" target="_blank" >
+        <img src="images/images/medialab_logo.svg">
+      </a>
+      <a flex="30" href="http://macro.media.mit.edu" target="_blank">
+        <img src="images/images/macro_logo.svg">
+      </a>
+    </div>
+  </div>
+</md-content>

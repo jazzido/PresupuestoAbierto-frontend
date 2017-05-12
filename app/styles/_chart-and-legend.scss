@@ -1,0 +1,168 @@
+.gp-main-charts {
+
+  height: 100%;
+  max-height: 100%;
+
+  #chart-title {
+    min-height: 70px;
+    h2 {
+      span {
+        &:hover {
+          a {
+            visibility: visible;
+          }
+          cursor: pointer;
+        }
+        a {
+          visibility: hidden;
+          text-decoration: underline;
+          color: black;
+        }
+      }
+    }
+  }
+
+
+  &>div {
+    max-height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #charts-header {
+    //z-index: 42;
+    width: 100%;
+    align-items: start;
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    md-switch {
+      margin: 0;
+    }
+    md-menu {
+      padding: 0;
+    }
+    .help-button {
+      margin-left: 10px;
+    }
+  }
+  .gp-chart-percent-switch {
+    min-width: 8em;
+  }
+}
+
+
+#gp-chart-card {
+  align-self: stretch;
+  width: 95%;
+  max-width: 100%;
+
+  &.legend-open {
+    flex-basis: 75%;
+  }
+
+  &.legend-closed {
+    flex-basis: 95%;
+  }
+
+  button[disabled] {
+    opacity: 0.2;
+  }
+
+  a.gp-active {
+    background-color: rgba(158,158,158,0.2);
+  }
+
+  /* slider style tweaks */
+  rzslider span.rz-pointer {
+    width: 16px; height: 16px;
+    top: -6px;
+
+    &.rz-pointer:after {
+      top: 4px; left: 4px;
+    }
+  }
+}
+
+.gp-chart-legend {
+  overflow: hidden;
+  background-color:transparent;
+  padding-left: 5px;
+  min-width: 30px;
+
+  button#toggle-legend {
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    padding: 0;
+    position: relative;
+    right: 0;
+    align-self: flex-start;
+    md-icon {
+      width: 18px; height: 18px; font-size: 18px;
+    }
+  }
+
+  &.legend-closed {
+    md-icon {
+      margin: 0 !important;
+    }
+  }
+
+  &:not(.legend-closed) {
+    min-width: 130px;
+  }
+
+  md-list {
+    padding-top: 0 !important;
+    md-list-item {
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+      padding: 0 !important;
+      min-height: 40px;
+      text-transform: capitalize;
+
+      a:hover {
+        cursor: pointer;
+      }
+
+      span:hover {
+        cursor: default;
+      }
+
+      md-icon {
+        font-size: 18px !important;
+
+        &:first-child {
+          margin-right: 0px !important;
+          margin-bottom: 0px !important;
+          margin-top: 0px !important;
+        }
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+g.tick-label:hover text {
+  text-decoration: underline;
+  fill: black;
+  cursor: pointer !important;
+}
+
+svg .hovered {
+  opacity: 0.6;
+  transition: opacity 0.2s linear;
+}
+
+#time-slider .md-sign .md-thumb-text{
+  display: none;
+}

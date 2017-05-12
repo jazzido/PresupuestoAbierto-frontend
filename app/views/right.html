@@ -1,0 +1,27 @@
+<charttype></charttype>
+<div layout="row"
+     layout-align="start center"
+     id="chart-title"
+     ui-view="header">
+</div>
+<md-content layout="row" flex="auto" layout-padding>
+  <md-whiteframe class="md-whiteframe-z3"
+                 ui-view="chart"
+                 id="gp-chart-card"
+                 flex
+                 ng-class="{'legend-open': legendOpen, 'legend-closed': !legendOpen}"
+                 layout-align="center center"
+                 layout="column">
+  </md-whiteframe>
+
+  <md-content class="gp-chart-legend"
+              ng-class="{'gp-chart-legend': true, 'legend-closed': !legendOpen }"
+              ui-view="legend"
+              flex
+              layout-align="start start"
+              layout="column"
+              layout-padding
+              md-scroll-y
+              ng-style="{display: selectedChart === 'table' ? 'none' : 'flex'}">
+  </md-content>
+</md-content>

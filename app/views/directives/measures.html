@@ -1,0 +1,25 @@
+<div layout="row">
+  <h2 class="md-body-2" flex="90">{{label}}</h2>
+  <a flex="10" class="help-button">
+    <help-tooltip>
+      Momento contable del presupuesto
+    </help-tooltip>
+    <md-icon>help</md-icon>
+  </a>
+</div>
+
+<div flex layout-align="start start">
+  <md-radio-group ng-model="current.measure" class="md-primary">
+    <md-radio-button ng-repeat="measure in cube.measures"
+                     ng-class="{'md-align-top-left': measure.annotations.description }"
+                     value="{{measure.name}}" ui-sref="main.dimension.chart({
+                      measures: measure.name,
+                      where: null
+                    })">
+      <span class="md-body-1">{{::measure.caption}}<br /></span>
+      <span ng-if="measure.annotations.description"
+            class="md-caption"
+            style="font-size: 10px; display: inline-block; line-height: 13px;">{{::measure.annotations.description}}</span>
+    </md-radio-button>
+  </md-radio-group>
+</div>

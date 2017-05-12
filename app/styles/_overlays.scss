@@ -1,0 +1,20 @@
+.white-overlay-fill {
+    -webkit-transition: 0.5s linear all;
+    -moz-transition: 0.5s linear all;
+    -ms-transition: 0.5s linear all;
+    -o-transition: 0.5s linear all;
+    transition: 0.5s linear all;
+    transition-delay: 0.1s;
+    opacity: 1;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.white-overlay-fill.ng-hide {
+    opacity: 0;
+}

@@ -1,0 +1,23 @@
+<button id="toggle-legend"
+        ng-click="legendCtrl.toggleLegend()">
+  <md-icon>{{legendOpen ? 'chevron_right' : 'chevron_left'}}</md-icon>
+</button>
+<md-list>
+  <md-list-item class="md-caption" layout="row" ng-repeat="member in ::legendCtrl.series">
+    <a href="{{::legendCtrl.drillDownHref(member)}}"
+       ng-mouseover="legendCtrl.mouseOver(member)"
+       ng-mouseout="legendCtrl.mouseOut(member)">
+      <md-tooltip md-direction="left"
+                  ng-if="!legendOpen"
+                  md-delay="0">{{::member.name}}</md-tooltip>
+      <md-icon flex="15" ng-style="{color: member.color}">brightness_1</md-icon>
+    </a>
+    <a ng-mouseover="legendCtrl.mouseOver(member)"
+       ng-mouseout="legendCtrl.mouseOut(member)"
+       flex="85"
+       href="{{::legendCtrl.drillDownHref(member)}}"
+       class="md-list-item-text"
+       ng-style="{display: legendOpen ? 'block' : 'none'}"
+       >{{::member.name}}</a>
+  </md-list-item>
+</md-list>

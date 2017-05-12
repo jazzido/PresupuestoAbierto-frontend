@@ -1,0 +1,16 @@
+<md-data-table-container flex>
+  <table md-data-table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th ng-repeat="column in aggregate.series">{{column.caption}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in table_data">
+        <td>{{row[0].time.caption}}</td>
+        <td ng-repeat="cell in row">{{cell.measures[measure]|money}}</td>
+      </tr>
+    </tbody>
+  </table>
+</md-data-table-container>
