@@ -2,18 +2,17 @@
   "name": "frontend",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "^1.4.7",
+    "angular": "1.4.8",
     "angular-animate": "^1.4.7",
     "angular-resource": "^1.4.7",
     "angular-route": "^1.4.7",
     "angular-sanitize": "^1.4.7",
-    "angular-material": "~1.0.0-rc6",
+    "angular-material": "0.12.0-rc1",
     "angular-touch": "^1.4.7",
     "angular-ui-router": "~0.2.15",
     "lodash": "~3.10.1",
     "angular-material-data-table": "~0.8.10",
-      "angular-ui-router-title": "~0.0.4",
-      "plottable": "^1.16.2",
+    "angular-ui-router-title": "~0.0.4",
     "d3plus": "git://github.com/alexandersimoes/d3plus.git"
   },
   "overrides": {

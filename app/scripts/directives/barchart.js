@@ -70,12 +70,17 @@ angular.module('frontendApp')
             [null, xAxis]
         ]);
 
+          chart.onRender(function() {
+                            placeTotalLabels();
+                          });
+
           chart.renderTo(d3.select(element[0].getElementsByTagName('svg')[0]));
           chart.renderImmediately();
 
         var totalLabelsContainer = plot.foreground()
               .append('g')
               .attr('class', 'total-labels-container');
+
         totalLabelsContainer
           .selectAll('text')
           .data(scope.aggregate.timeTotals)
