@@ -52,8 +52,7 @@ angular.module('frontendApp')
         }
 
         function placeLabels (plot) {
-          var svg = plot._rootSVG,
-              labels = plot.foreground();
+          var labels = plot.foreground();
 
           // remove existing labels, if any
           var ln = labels.node();

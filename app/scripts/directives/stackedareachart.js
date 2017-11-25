@@ -57,7 +57,6 @@ angular.module('frontendApp')
             var metadata = plot.datasets()[i].metadata();
             var member = metadata.series;
             scope.highlight(member);
-            var dset = scope.findDataset(plot.datasets(), member);
           })
           .on('mouseout', function () {
             d3.select(this).classed('hovered', false);
