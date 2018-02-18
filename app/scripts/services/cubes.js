@@ -92,9 +92,9 @@ angular
         params.cubeId +
         "/dimensions/" +
         params.dimension +
-        "/level/" +
+        "/levels/" +
         params.level +
-        "/member/" +
+        "/members/" +
         params.members;
 
       $http.get(url, { cache: true }).then(
