@@ -51,6 +51,13 @@ angular
       );
     }
 
+    function getDimension(cube, dimensionName) {
+      return _.find(cube.dimensions,
+                    function(d) {
+                      return d.name === dimensionName;
+                    });
+    }
+
     srv.getLastUrl = function() {
       return srv.lastURL + ".xls?" + serialize(srv.lastParams);
     };
@@ -112,40 +119,56 @@ angular
       // si level es null, buscamos el primer nivel
       // de la hierarchy
       var level = params.level;
+      var levelIdx;
+
+      var d = _.find(srv.cube.dimensions, function(d) {
+        return d.name === params.dimension;
+      });
 
       if (angular.isUndefined(level)) {
-        var d = _.find(srv.cube.dimensions, function(d) {
-          return d.name === params.dimension;
-        });
         level = d.hierarchies[0].levels[d.hierarchies[0].has_all ? 1 : 0].name;
+      }
+      else {
+        levelIdx = _.findIndex(d.hierarchies[0]
+                               .levels,
+                               function (l) {
+                                 return l.name === level;
+                               });
       }
 
       var timeDimension = _.find(srv.cube.dimensions, function(d) {
         return d.type === "time";
       });
+      var timeDd = [
+        timeDimension.name,
+        timeDimension.hierarchies[0].levels[1].name
+      ].join("."); // always drilldown by time
+
+      var cutLevel = null;
+
+      if (!_.isUndefined(params.members) && !angular.isUndefined(level)) {
+        cutLevel = d.hierarchies[0].levels[levelIdx + 1];
+      }
 
       var query = {
         "measures[]": _.pluck(srv.cube.measures, "name"), // get every defined measure
-        date: params.date,
+        date: params.date, // XXX TODO
         nonempty: "true"
       };
 
       // XXX TODO this is bullshit
       // take care of this when I refactor aggregator to make it look
       // like Python Cubes
-      if (_.isUndefined(params.breakDown)) {
-        console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxx");
+      if (angular.isUndefined(params.breakDown)) {
+
         query = _.assign(query, {
           "drilldown[]": [
-            [params.dimension, level].join("."),
-            [
-              timeDimension.name,
-              timeDimension.hierarchies[0].levels[1].name
-            ].join(".")
+            cutLevel === null ? [params.dimension, level].join(".") : [params.dimension, cutLevel.name].join("."),
+            timeDd
           ],
-          "members[]": _.isUndefined(params.members)
+          "cut[]": cutLevel === null
             ? undefined
-            : $window.decodeURIComponent(params.members)
+            : "[" + [params.dimension, level].join("].[") + "].&[" + $window.decodeURIComponent(params.members) + "]"
         });
       } else {
         // if there's a breakDown, juggle things around
@@ -157,10 +180,8 @@ angular
               $window.decodeURIComponent(params.members)
             ].join(".")
           ],
-          "drilldown[]": params.breakDown,
-          "members[]": _.isUndefined(params.breakDownMember)
-            ? undefined
-            : $window.decodeURIComponent(params.breakDownMember)
+          "cut[]": "[" + [params.dimension, level].join("].[") + "].&[" + $window.decodeURIComponent(params.members) + "]",
+          "drilldown[]": [params.breakDown, timeDd]
         });
       }
 
@@ -178,18 +199,13 @@ angular
 
       return srv.promise.then(function(response) {
         var data = response.data;
-        var datasets = _.map(_.unzip(data.values), _.unzip), // measures by dimension members by time
+
+        var datasets = _.unzip(_.map(_.unzip(data.values), _.unzip)),
           series = aggregateToSeries(data, 0),
           mNames = _.pluck(srv.cube.measures, "name"), // measure names
           timeAxisIdx = _.findIndex(data.axis_dimensions, { type: "time" }),
           timeDim = data.axis_dimensions[timeAxisIdx],
           tKeys = _.pluck(data.axes[timeAxisIdx].members, "name"); // time member keys
-
-        console.log("datasets", datasets);
-        console.log("series", series);
-        console.log("mnames", mNames);
-        console.log("tkeys", tKeys);
-
         var timeTotals = tKeys.map(function(t, j) {
           // totals by time
           return _.object(
