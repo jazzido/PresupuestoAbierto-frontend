@@ -40,7 +40,7 @@ angular.module('frontendApp')
         }
 
         var placeTotalLabels = function() {
-          if (_.isUndefined(totalLabelsContainer)) return;
+          if (_.isUndefined(totalLabelsContainer)) { return; }
           var texts = totalLabelsContainer
                 .selectAll('text');
           texts

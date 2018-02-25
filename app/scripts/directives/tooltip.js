@@ -28,7 +28,7 @@ angular.module('frontendApp')
           offsetParent = element.parent()[0];
         }
 
-        transclude(scope, function(clone, scope) {
+        transclude(scope, function(clone) {
           element.append(clone);
         });
 

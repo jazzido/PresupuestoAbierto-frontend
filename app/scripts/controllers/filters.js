@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('FiltersCtrl', function ($state, $scope, Cube, Cubes, $stateParams) {
+  .controller('FiltersCtrl', function ($state, $scope, Cube, Cubes) {
     $scope.Cube = Cube;
     $scope.Cubes = Cubes;
 

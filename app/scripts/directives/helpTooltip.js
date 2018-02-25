@@ -19,7 +19,7 @@ angular.module('frontendApp')
             tooltipParent = angular.element(document.body),
             TOOLTIP_WINDOW_EDGE_SPACE = 12;
 
-        transclude(scope, function(clone, scope) {
+        transclude(scope, function(clone) {
           element.children().children().append(clone);
         });
 

@@ -9,7 +9,7 @@
  */
 angular
   .module("frontendApp")
-  .factory("CubesService", function($http, settings, $q, $window, $log) {
+  .factory("CubesService", function($http, settings, $q, $window) {
     var API_URL = settings.API_URL;
 
     var srv = {
@@ -51,12 +51,12 @@ angular
       );
     }
 
-    function getDimension(cube, dimensionName) {
-      return _.find(cube.dimensions,
-                    function(d) {
-                      return d.name === dimensionName;
-                    });
-    }
+    // function getDimension(cube, dimensionName) {
+    //   return _.find(cube.dimensions,
+    //                 function(d) {
+    //                   return d.name === dimensionName;
+    //                 });
+    // }
 
     srv.getLastUrl = function() {
       return srv.lastURL + ".xls?" + serialize(srv.lastParams);
@@ -166,9 +166,9 @@ angular
             cutLevel === null ? [params.dimension, level].join(".") : [params.dimension, cutLevel.name].join("."),
             timeDd
           ],
-          "cut[]": cutLevel === null
-            ? undefined
-            : "[" + [params.dimension, level].join("].[") + "].&[" + $window.decodeURIComponent(params.members) + "]"
+          "cut[]": cutLevel === null ?
+           undefined :
+           "[" + [params.dimension, level].join("].[") + "].&[" + $window.decodeURIComponent(params.members) + "]"
         });
       } else {
         // if there's a breakDown, juggle things around
@@ -236,7 +236,7 @@ angular
               time: t,
               percent: _.object(
                 mNames,
-                _.map(mNames, function(m, i) {
+                _.map(mNames, function(m) {
                   return measures[m] / timeTotals[j][m];
                 })
               )
